@@ -46,6 +46,8 @@ function generateLabelMeInputFile(folder,sandbox,N,HOMEIMAGES,introPage,outputFi
 % Nimages - use only the first Nimages from the folder (by default create
 %              HITS for all images)
 
+baseURL = 'http://labelme.csail.mit.edu/Release3.0';
+
 if nargin < 2
   sandbox = 0;
 end
@@ -53,7 +55,7 @@ if nargin < 3
   N = 'inf'; % The MT worker can label as many polygons as they wish.
 end
 if nargin < 4
-  HOMEIMAGES = 'http://labelme.csail.mit.edu/Images';
+  HOMEIMAGES = fullfile(baseURL,'Images');
 end
 if nargin < 5
   introPage = [];
@@ -111,7 +113,7 @@ end
 fp = fopen(outputFile,'w');
 fprintf(fp,'urls\n');
 for i = 1:Nimages
-  fprintf(fp,'http://labelme.csail.mit.edu/tool.html?collection=LabelMe&amp;mode=mt&amp;N=%s&amp;folder=%s&amp;image=%s%s\n',N,folder,filenames(i).name,extraVars);
+  fprintf(fp,'%s/tool.html?collection=LabelMe&amp;mode=mt&amp;N=%s&amp;folder=%s&amp;image=%s%s\n',baseURL,N,folder,filenames(i).name,extraVars);
 end
 fclose(fp);
 
