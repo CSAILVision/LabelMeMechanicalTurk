@@ -1,32 +1,18 @@
-function generateLabelMeInputFile(folder,sandbox,N,HOMEIMAGES,introPage,outputFile,Nimages)
+function generateLabelMeInputFile(username,collection,sandbox,N,HOMEIMAGES,introPage,outputFile,Nimages)
 % Generate Amazon Mechanical Turk input file with set of images for
 % workers to label.
-%
-% To start, contact us (http://labelme.csail.mit.edu/AboutMe.html) to
-% upload your images.  We will put your images into a folder and send you
-% the folder name.  We ask that your images do not contain any spaces or
-% special characters and that the images have a .jpg extension.  Your
-% images will live at:
-%
-% http://labelme.csail.mit.edu/Images/FOLDER
 %
 % To generate the Mechanical Turk input file, simply run the following in
 % Matlab:
 %
-% folder = FOLDER;
-% generateLabelMeInputFile(folder)
+% generateLabelMeInputFile(username,collection)
 %
-% The script will produce a file called "labelme.input".  Simply continue
-% following the instructions in 
-%
-% http://labelme.csail.mit.edu/mechanicalturk.html
-%
-% to load jobs onto Mechanical Turk.
+% The script will produce a file called "labelme.input".  
 %
 % This function is more flexible.  Here are additional parameters that
 % can be used:
 %
-% generateLabelMeInputFile(folder,sandbox,N,HOMEIMAGES,introPage,outputFile)
+% generateLabelMeInputFile(username,collection,sandbox,N,HOMEIMAGES,introPage,outputFile)
 %
 % Inputs:
 % sandbox - Set to 1 to run on Mechanical Turk Sandbox to debug (0 is
@@ -48,20 +34,27 @@ function generateLabelMeInputFile(folder,sandbox,N,HOMEIMAGES,introPage,outputFi
 
 baseURL = 'http://labelme.csail.mit.edu/Release3.0';
 
-if nargin < 2
+folder = fullfile('users',username,collection);
+
+if nargin < 3
   sandbox = 0;
 end
-if nargin < 3
+if nargin < 4
   N = 'inf'; % The MT worker can label as many polygons as they wish.
 end
-if nargin < 4
+if nargin < 5
   HOMEIMAGES = fullfile(baseURL,'Images');
 end
-if nargin < 5
+if nargin < 6
   introPage = [];
 end
-if nargin < 6
+if nargin < 7
   outputFile = 'labelme.input';
+end
+
+if sandbox~=isSandboxMode
+  fname = fullfile(getenv('MTURK_CMD_HOME'),'bin','mturk.properties');
+  error('\n\nsandbox flag is not set in agreement with the service_url variable in %s\n\n',fname);
 end
 
 if ~isstr(N)
@@ -103,7 +96,7 @@ if ~isempty(introPage)
   extraVars = [extraVars sprintf('&amp;mt_intro=%s',introPage)];
 end
 
-if nargin < 7
+if nargin < 8
   Nimages = length(filenames);
 else
   Nimages = min(Nimages, length(filenames));
