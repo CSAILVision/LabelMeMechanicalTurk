@@ -42,7 +42,10 @@ sandbox = 1;
 generateLabelMeInputFile(username,collection,sandbox);
 % HITS: you can remove specific tasks by editing the file 'labelme.input' and
 % deleting lines from it
-% PRICE: To change the price of a task, edit the file 'labelme.properties'
+% PRICE: To change the price of a task, edit the file 'labelme.properties'.
+% Currently, each HIT is priced at $0.01 per image. Please see the
+% documentation for the Amazon Mechanical Turk Command Line Tools for
+% more information.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 2: SUBMIT HITS
