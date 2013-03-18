@@ -90,10 +90,12 @@ end
 % Get extra variables:
 extraVars = '';
 if sandbox
-  extraVars = '&amp;mt_sandbox=true';
+  extraVars = '&mt_sandbox=true';
+% $$$   extraVars = '&amp;mt_sandbox=true';
 end
 if ~isempty(introPage)
-  extraVars = [extraVars sprintf('&amp;mt_intro=%s',introPage)];
+  extraVars = [extraVars sprintf('&mt_intro=%s',introPage)];
+% $$$   extraVars = [extraVars sprintf('&amp;mt_intro=%s',introPage)];
 end
 
 if nargin < 8
@@ -106,7 +108,8 @@ end
 fp = fopen(outputFile,'w');
 fprintf(fp,'urls\n');
 for i = 1:Nimages
-  fprintf(fp,'%s/tool.html?collection=LabelMe&amp;mode=mt&amp;N=%s&amp;folder=%s&amp;image=%s%s\n',baseURL,N,folder,filenames(i).name,extraVars);
+  fprintf(fp,'%s/tool.html?collection=LabelMe&mode=mt&N=%s&folder=%s&image=%s%s\n',baseURL,N,folder,filenames(i).name,extraVars);
+% $$$   fprintf(fp,'%s/tool.html?collection=LabelMe&amp;mode=mt&amp;N=%s&amp;folder=%s&amp;image=%s%s\n',baseURL,N,folder,filenames(i).name,extraVars);
 end
 fclose(fp);
 
