@@ -22,6 +22,12 @@ collection = ENTER_YOUR_COLLECTION_NAME_HERE;
 
 % Set this to 0 to submit tasks to users (pay money mode).
 % Set this to 1 to debug in the sandbox (free, no money).
+%
+% The sandbox is free to use (you have fake credits on this server), so
+% you can test here to make sure everything works. When you are ready for
+% the real thing, set sandbox=0 and run the remaining commands in this
+% file. Make sure to add money to your Amazon account before running on
+% the real server.
 sandbox = 1;
 
 % Make sure to also set also set the "service_url" variable inside
@@ -42,24 +48,35 @@ generateLabelMeInputFile(username,collection,sandbox);
 % STEP 2: SUBMIT HITS
 %
 submitHits(sandbox);
+% You will see messages indicating that the jobs are being submitted. At
+% the end, there will be a URL that points to a preview page for the
+% HIT. You can go to that URL and try out the HIT. All of the collected
+% annotations are stored on the LabelMe servers, so you can download them
+% immediately.
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 3: DOWNLOAD SUMMARY RESULTS and review them:
 %
-getResults(sandbox); % this will create the file labelme.results.xls
+getResults(sandbox);
+% This will create the file 'labelme.results.xls'. This is a comma
+% separated file, which can be viewed with Excel. This file lists the
+% status of each HIT, as well as outputs from the annotation task, such
+% as number of annotations labeled, last object labeled, etc.
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% STEP 4: PAY WORKERS
+% STEP 4: PAY WORKERS. It is important to pay the workers as soon as possible.
 %
 reviewResults(sandbox);
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% STEP 5: REMOVE HITS
+% STEP 5: REMOVE HITS FROM AMAZON SERVER.
 %
 removeHits(sandbox);
+% When all of the HITs are completed, you can remove them from the Amazon
+% server.
 return
 
 
