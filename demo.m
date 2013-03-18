@@ -33,7 +33,7 @@ sandbox = 1;
 % Live (pay money) mode:
 % service_url=https://mechanicalturk.amazonaws.com/?Service=AWSMechanicalTurkRequester
 
-generateLabelMeInputFile(labelme_folder,sandbox);
+generateLabelMeInputFile(username,collection,sandbox);
 % HITS: you can remove specific tasks by editing the file 'labelme.input' and
 % deleting lines from it
 % PRICE: To change the price of a task, edit the file 'labelme.properties'
