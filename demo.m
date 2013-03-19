@@ -60,7 +60,7 @@ submitHits(sandbox);
 % Note that Mechanical Turk workers will see the following set of
 % instructions when they preview the HIT:
 %
-% http://new-labelme.csail.mit.edu/Release3.0/annotationTools/html/mt_instructions.html
+% http://labelme.csail.mit.edu/Release3.0/annotationTools/html/mt_instructions.html
 %
 % Once they accept the HIT, then they will be directed to the annotation
 % tool.  If you wish to change the instructions page that is shown during
