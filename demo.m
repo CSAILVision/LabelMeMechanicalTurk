@@ -56,6 +56,17 @@ submitHits(sandbox);
 % HIT. You can go to that URL and try out the HIT. All of the collected
 % annotations are stored on the LabelMe servers, so you can download them
 % immediately.
+%
+% Note that Mechanical Turk workers will see the following set of
+% instructions when they preview the HIT:
+%
+% http://new-labelme.csail.mit.edu/Release3.0/annotationTools/html/mt_instructions.html
+%
+% Once they accept the HIT, then they will be directed to the annotation
+% tool.  If you wish to change the instructions page that is shown during
+% preview mode, please see how to set the 'mt_intro' variable within the
+% "Advanced features" section on the LabelMe/Mechanical Turk instructions
+% page.
 return
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
